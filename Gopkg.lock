@@ -20,6 +20,16 @@
   version = "v0.5.0"
 
 [[projects]]
+  name = "github.com/bitly/oauth2_proxy"
+  packages = [
+    "api",
+    "cookie",
+    "providers"
+  ]
+  revision = "b90a23473f10c7bb2d84acd033f7d7ed81b95dd3"
+  version = "v2.2"
+
+[[projects]]
   branch = "v2"
   name = "github.com/coreos/go-oidc"
   packages = ["."]
@@ -149,6 +159,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "c9197f62e011dc12a8fac8ac6da2677aaf3811f95dce972eb53dd8f7ca6ae0f7"
+  inputs-digest = "338c9004022b26c0ab2c7a9c774205728562e97ae1a60b7cd7d2b3091a91567f"
   solver-name = "gps-cdcl"
   solver-version = 1

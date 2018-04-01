@@ -131,7 +131,7 @@ func (o *Options) Validate() error {
 		insecureTransport := &http.Transport{
 			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 		}
-		http.DefaultClient = &http.Client{Transport: insecureTransport}
+ 		http.DefaultTransport = insecureTransport
 	}
 
 	msgs := make([]string, 0)
@@ -272,12 +272,12 @@ func parseProviderInfo(o *Options, msgs []string) []string {
 				p.SetGroupRestriction(o.GoogleGroups, o.GoogleAdminEmail, file)
 			}
 		}
-	case *providers.OIDCProvider:
-		if o.oidcVerifier == nil {
-			msgs = append(msgs, "oidc provider requires an oidc issuer URL")
-		} else {
-			p.Verifier = o.oidcVerifier
-		}
+//	case *providers.OIDCProvider:
+//		if o.oidcVerifier == nil {
+//			msgs = append(msgs, "oidc provider requires an oidc issuer URL")
+//		} else {
+//			p.Verifier = o.oidcVerifier
+//		}
 	}
 	return msgs
 }
