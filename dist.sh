@@ -24,23 +24,13 @@ for os in windows linux darwin; do
         EXT=".exe"
     fi
     BUILD=$(mktemp -d ${TMPDIR:-/tmp}/oauth2_proxy.XXXXXX)
-    TARGET="oauth2_proxy-$version.$os-$arch.$goversion"
+    TARGET="oauth2_proxy-$os"
     FILENAME="oauth2_proxy-$os$EXT"
     GOOS=$os GOARCH=$arch CGO_ENABLED=0 \
         go build -ldflags="-s -w" -o $BUILD/$TARGET/$FILENAME || exit 1
     pushd $BUILD/$TARGET
     sha256sum+=("$(shasum -a 256 $FILENAME || exit 1)")
     cd .. && tar czvf $TARGET.tar.gz $TARGET
-    mv $TARGET.tar.gz $DIR/dist
+    mv $TARGET.tar.gz $DIR
     popd
-done
-
-checksum_file="sha256sum.txt"
-cd $DIR/dist
-if [ -f $checksum_file ]; then
-    rm $checksum_file
-fi
-touch $checksum_file
-for checksum in "${sha256sum[@]}"; do
-    echo "$checksum" >> $checksum_file
 done
