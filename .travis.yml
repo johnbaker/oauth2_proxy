@@ -1,12 +1,18 @@
 language: go
 go:
-  - 1.8.x
-  - 1.9.x
+- 1.10.x
 script:
-  - wget -O dep https://github.com/golang/dep/releases/download/v0.3.2/dep-linux-amd64
-  - chmod +x dep
-  - ./dep ensure
-  - ./dist.sh
+- wget -O dep https://github.com/golang/dep/releases/download/v0.3.2/dep-linux-amd64
+- chmod +x dep
+- "./dep ensure"
+- "./dist.sh"
 sudo: false
 notifications:
   email: false
+deploy:
+  provider: releases
+  api_key:
+    secure: n1qK/Euhhy8Ph3nNffd7hOfaOZdULQL7Ew9wIEiI3VrjNpU0ruXPn0pElHduWdMIAN2PgMCbkEsS9njejblGSzk2dpzRkm3oxTGL8O/6+Al+A6oC1bW1QDKxKP5ZeUUi3hb+xUzPT628OCqY4s74n3dzT0GpCZOGwIvrAgAyJ0bUb34wZWRCCrKweRcprRKYm3wKeQuZSw5WasQY2J0yJD3XtBIHKflvmmvCaDBeghbiRyUcX9BMD4ayR5DAyqkujv/NcN5ZIVLBxUAqTfAfqgvuAcX+h7COq1IhDt6Y77b3WIjuKjMS+lvbW9lSVTQPW6u3aphq40TRgNrIL2Lvgq+x3sw+it4MnnzLn7vu7wCXdqm+tcBcjmXOmta79kTO1bFXKbewz9OLgehZIQgn3kjeYDa75XHrSbaWt7bmWfSwfSW3syOQYCBQEyBgTdlysssjmjKDtGRzA0JpCoQvuc1Zm2OVbbXfSmvzPYmyNj8W0F0V0/NBggZyTk0egok0NVGmREsL8Cz4CKQyJM0Y9OOjemwiXeJ4NoZwhsMuf7dgkSF75YNg8efdHIHTNy0UqvIim+W13qi9TaWeZQ1nNQRvJVcqGFZqTsmXKqhCKDBsSTcVwgD4IyMUyfYkkcfEdIkmSzDh2IjYHrTWdIBCNGTun6vZMy8i947n8xFIv7U=
+  file: oauth2_proxy-darwin.tar.gz oauth2_proxy-windows.tar.gz oauth2_proxy-linux.tar.gz
+  on:
+    repo: johnbaker/oauth2_proxy
