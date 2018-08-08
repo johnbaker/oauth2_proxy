@@ -31,6 +31,6 @@ for os in windows linux darwin; do
     pushd $BUILD/$TARGET
     sha256sum+=("$(shasum -a 256 $FILENAME || exit 1)")
     cd .. && tar czvf $TARGET.tar.gz $TARGET
-    mv $TARGET.tar.gz $DIR
+    mv $TARGET.tar.gz $DIR/dist
     popd
 done
