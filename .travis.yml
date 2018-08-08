@@ -6,7 +6,7 @@ script:
   - wget -O dep https://github.com/golang/dep/releases/download/v0.3.2/dep-linux-amd64
   - chmod +x dep
   - ./dep ensure
-  - ./test.sh
+  - ./dist.sh
 sudo: false
 notifications:
   email: false
